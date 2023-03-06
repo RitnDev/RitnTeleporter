@@ -12,7 +12,6 @@ local RitnSurface = class.newclass(RitnCoreSurface, function(base, LuaSurface)
     if LuaSurface.valid == false then return end
     if LuaSurface.object_name ~= "LuaSurface" then return end
     RitnCoreSurface.init(base, LuaSurface)
-    log('> '..base.object_name..':init() -> RitnLobbyGame')
     --------------------------------------------------
     base.data_teleporter = remote.call("RitnCoreGame", "get_data", "teleporter")
     --------------------------------------------------
@@ -103,6 +102,7 @@ function RitnSurface:removeTeleporter(rEvent)
     if LuaEntity == nil then return end 
     if LuaEntity.valid == false then return end
     if LuaEntity.name ~= ritnlib.defines.teleporter.names.entity.teleporter then return end
+    log("> "..self.object_name..":removeTeleporter()")
 
     local id_teleporter = LuaEntity.unit_number
     local tag_number = self.data[self.name].teleporters[id_teleporter].tag_number

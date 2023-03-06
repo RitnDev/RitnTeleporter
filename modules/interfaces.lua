@@ -21,8 +21,11 @@ local teleporter_interface = {
         end
     end,
     --disable modules
-    ["disable.module.commands"] = function()
-        global.teleporter.modules.commands = false
+    ["disable.module.player"] = function()
+        global.teleporter.modules.player = false
+    end,
+    ["disable.module.teleporter"] = function()
+        global.teleporter.modules.teleporter = false
     end,
 }
 

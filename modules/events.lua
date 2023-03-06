@@ -32,7 +32,8 @@ end)
 -------------------------------------------
 global.teleporter = { 
     modules = {
-        commands = true,
+        player = true,
+        teleporter = true,
     },
     tileNoTeleporter = {
         ["out-of-map"] = true,

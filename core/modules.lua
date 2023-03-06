@@ -7,7 +7,11 @@ modules.interfaces =            require(ritnlib.defines.teleporter.modules.inter
 --modules.commands =              require(ritnlib.defines.teleporter.modules.commands)
 
 ---- Modules désactivable
-modules.player =              require(ritnlib.defines.teleporter.modules.player) 
-modules.teleporter =              require(ritnlib.defines.teleporter.modules.teleporter) 
+if global.teleporter.modules.player then 
+    modules.player =            require(ritnlib.defines.teleporter.modules.player) 
+end
+if global.teleporter.modules.teleporter then 
+    modules.teleporter =        require(ritnlib.defines.teleporter.modules.teleporter) 
+end
 ------------------------------------------------------------------------------
 return modules

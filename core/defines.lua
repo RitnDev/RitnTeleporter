@@ -90,7 +90,6 @@ defines.prefix = {
 
 -- gui
 defines.gui = {}
---defines.gui.styles = directory .. "prototypes.styles"
 local dir_gui = directory .. "gui."
 ---------------------------
 defines.gui.teleporter = dir_gui .. "teleporter"
@@ -170,11 +169,6 @@ defines.names = {
 defines.names.caption = {
 
     msg = {       
-        --not_link = {"msg.not-link"},
-        --no_surface = {"msg.no-surfaces"},
-        --no_select = {"msg.no-selected"},
-        --no_access = {"msg.no-access"},
-        --local_party = {"msg.local"},
         cursor = {"msg.cursor"},
     },
 
