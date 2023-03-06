@@ -181,6 +181,7 @@ defines.names.caption = {
     frame_teleporter = {
         titre = {"entity-name.ritn-teleporter"},
         label_enter = {"frame-teleporter.label-enter"},
+        label_passenger = {"frame-teleporter.label-passenger"},
         button_teleport = {"frame-teleporter.teleport-button"},
         button_empty = "Aucun autre téléporteur n'est posé sur la carte."
     }

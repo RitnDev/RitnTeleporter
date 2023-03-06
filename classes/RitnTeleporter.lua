@@ -2,15 +2,9 @@
 ----------------------------------------------------------------
 local class = require(ritnlib.defines.class.core)
 ----------------------------------------------------------------
-local RitnGuiTeleporter = require(ritnlib.defines.teleporter.class.guiTeleporter)
-----------------------------------------------------------------
 local pattern = "([^-]*)~?([^-]*)~?([^-]*)"
 ----------------------------------------------------------------
-
-
-
-
-
+--- CLASSE DEFINES
 ----------------------------------------------------------------
 local RitnTeleporter = class.newclass(function(base, LuaEntity)
     if LuaEntity == nil then return end
@@ -19,6 +13,7 @@ local RitnTeleporter = class.newclass(function(base, LuaEntity)
     if LuaEntity.name ~= ritnlib.defines.teleporter.names.entity.teleporter then return end
     base.object_name = "RitnTeleporter"
     --------------------------------------------------
+    log('> '..base.object_name..'() -> init ok !')
     base.entity = LuaEntity
     base.surface = LuaEntity.surface
     base.force = LuaEntity.force
@@ -35,19 +30,21 @@ end)
 ----------------------------------------------------------------
 
 
-function RitnTeleporter:open(event)
-    if self.entity == nil then return end 
-    if self.name ~= ritnlib.defines.teleporter.names.entity.teleporter then return end
-    if self.data == nil then return end
-    RitnGuiTeleporter(event):action_open(self)
+function RitnTeleporter:open()
+    if self.entity == nil then return false end 
+    if self.name ~= ritnlib.defines.teleporter.names.entity.teleporter then return false end
+    if self.data == nil then return false end
+
+    return true
 end
 
 
-function RitnTeleporter:close(event)
-    if self.entity == nil then return end 
-    if self.name ~= ritnlib.defines.teleporter.names.entity.teleporter then return end
-    if self.data == nil then return end
-    RitnGuiTeleporter(event):action_close()
+function RitnTeleporter:close()
+    if self.entity == nil then return false end 
+    if self.name ~= ritnlib.defines.teleporter.names.entity.teleporter then return false end
+    if self.data == nil then return false end
+
+    return true
 end
 
 

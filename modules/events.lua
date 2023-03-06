@@ -12,7 +12,8 @@ function events.on_init(event)
         force_name = "",
         position = {x=0, y=0},
         render_id = -1,
-        tag_number = -1
+        tag_number = -1,
+        index = 0,
     })
     remote.call("RitnCoreGame", "add_param_data", "surface", "teleporters", {})
 end
@@ -37,9 +38,6 @@ global.teleporter = {
         ["out-of-map"] = true,
         ["deepwater"] = true,
         ["deepwater-green"] = true,
-        ["water"] = function(LuaTile) 
-            if string.sub(LuaTile.name,1,string.len("water")) == "water" then return end 
-        end,
     }
 }
 -------------------------------------------

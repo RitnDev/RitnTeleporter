@@ -36,6 +36,8 @@
         consumption = "1kW",
         energy_source = {type = "void"},
         allow_passengers = true,
+        minimap_representation = nil,
+        selected_minimap_representation = nil,
         animation = {
             layers = {
                 {

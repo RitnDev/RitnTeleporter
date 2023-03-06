@@ -30,9 +30,13 @@ local function on_player_driving_changed_state(e)
             end
 
             if driving then 
-                rTeleporter:open(e)
+                if rTeleporter:open() then 
+                    RitnGuiTeleporter(e):action_open(rTeleporter)
+                end
             else
-                rTeleporter:close(e)
+                if rTeleporter:close() then 
+                    RitnGuiTeleporter(e):action_close()
+                end
             end
         end
     end
@@ -40,7 +44,10 @@ end
 
 
 local function on_gui_opened(e)
-    RitnTeleporter(RitnEvent(e).entity):open(e)
+    local rTeleporter = RitnTeleporter(RitnEvent(e).entity)
+    if rTeleporter:open() then 
+        RitnGuiTeleporter(e):action_open(rTeleporter)
+    end
 end
 
 

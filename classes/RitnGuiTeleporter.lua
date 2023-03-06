@@ -5,10 +5,11 @@ local libStyle = require(ritnlib.defines.class.gui.style)
 local libGui = require(ritnlib.defines.class.luaClass.gui)
 ----------------------------------------------------------------
 local RitnPlayer = require(ritnlib.defines.core.class.player)
+local RitnTeleporter = require(ritnlib.defines.teleporter.class.teleporter)
 ----------------------------------------------------------------
 local font = ritnlib.defines.names.font
 local fGui = require(ritnlib.defines.teleporter.gui.teleporter)
-local table = require(ritnlib.defines.other).table
+local table = require(ritnlib.defines.table)
 ----------------------------------------------------------------
 --- CLASSE DEFINES
 ----------------------------------------------------------------
@@ -40,7 +41,8 @@ end)
 
 function RitnGuiTeleporter:create(...)
     if self.gui[1][self.gui_name.."-"..self.main_gui] then return self end
-    local rTeleporter = ...
+    local rTeleporter, selecter = ...
+    if selecter == nil then selecter = 1 end
 
     local element = fGui.getElement(self.gui_name)
 
@@ -108,6 +110,8 @@ function RitnGuiTeleporter:create(...)
                 driving = true
             end
         end
+    elseif self.driving == false then 
+        content.label.enter.caption = ritnlib.defines.teleporter.names.caption.frame_teleporter.label_enter
     end
 
     -- styles guiElement
@@ -145,15 +149,22 @@ function RitnGuiTeleporter:create(...)
         if nbTeleporter > 0 then 
             content.flow.teleport.visible = true
 
-            local thisTeleporter = rTeleporter.data.name
+            local thisIndex = rTeleporter.data.index   
+            -- temporary table teleporter sort by index
+            local tabTemp = {}
+            for i,value in pairs(teleporters) do 
+                tabTemp[teleporters[i].index] = value
+            end
+
             --> add teleporter on the list
-            for _,teleporter in pairs(teleporters) do 
+            for _,teleporter in pairs(tabTemp) do 
                 if teleporter.name ~= nil then
-                    if thisTeleporter ~= teleporter.name then
+                    if thisIndex ~= teleporter.index then
                         content.list.add_item(teleporter.name)
                     end
                 end
             end 
+            content.list.selected_index = selecter
         else 
             content.flow.empty.visible = true
         end
@@ -196,7 +207,26 @@ end
 
 
 function RitnGuiTeleporter:action_teleport()
+    local info = self:getElement("label", "info")
+    local list = self:getElement("list")
+    ----
+    local surface_name = info.caption[2]
+    local selected_index = list.selected_index
+    local item_select = list.get_item(selected_index)
+    ----
+    local surfaces = remote.call("RitnCoreGame", "get_surfaces")
+    local teleporters = surfaces[surface_name].teleporters
+    local id = table.index(teleporters, 'name', item_select)
+    local teleporter = teleporters[id]
     
+    local tabEntities = game.surfaces[surface_name].find_entities_filtered({
+        name=ritnlib.defines.teleporter.names.entity.teleporter, 
+        type='car',
+        position=teleporter.position,
+    })
+    if table.length(tabEntities) > 0 then 
+        tabEntities[1].set_passenger(self.player)
+    end
     log('> '..self.object_name..':action_teleport('.. self.player.name ..')')
     return self
 end
@@ -256,14 +286,138 @@ end
 
 
 function RitnGuiTeleporter:action_up()
-    
+    local info = self:getElement("label", "info")
+    local list = self:getElement("list")
+    ----
+    local id = tonumber(info.caption[1])
+    local surface_name = info.caption[2]
+    local selected_index = list.selected_index
+    ----
+    if selected_index == 0 then return self end
+    ----
+    local surfaces = remote.call("RitnCoreGame", "get_surfaces")
+    local teleporters = surfaces[surface_name].teleporters
+    local teleporter = teleporters[id]
+    ----
+    local item_select = list.get_item(selected_index)
+    local id_select = table.index(teleporters, 'name', item_select)
+    local teleporter_select = teleporters[id_select]
+    ----
+    local tabTemp = {}
+    for i,value in pairs(teleporters) do 
+        tabTemp[teleporters[i].index] = value
+    end
+    ----
+    local pass = false
+    local new_index = teleporter_select.index
+    if teleporter_select.index - 1 == teleporter.index then 
+        pass = true
+        new_index = new_index - 2
+    else 
+        new_index = new_index - 1
+    end
+    -- check si pas déjà en haut de la liste
+    if new_index == 0 then return self end
+    ----
+    table.remove(tabTemp, teleporter_select.index)
+    table.insert(tabTemp, new_index, teleporter_select)
+    tabTemp[new_index].index = new_index
+    if pass then 
+        tabTemp[new_index+1].index = new_index+1
+        tabTemp[new_index+2].index = new_index+2
+    else 
+        tabTemp[new_index+1].index = new_index+1
+    end
+    ----
+    local tmp_teleporters = teleporters
+    teleporters = {}
+    for id,value in pairs(tmp_teleporters) do 
+        teleporters[id] = value
+        for y,_ in pairs(tabTemp) do 
+            if tabTemp[y].id == id then 
+                teleporters[id].index = tabTemp[y].index
+            end
+        end
+    end
+    ----
+    surfaces[surface_name].teleporters = teleporters
+    remote.call("RitnCoreGame", "set_surfaces" , surfaces)
+    local rTeleporter = RitnTeleporter(self.vehicle)
+    if rTeleporter.data.index < teleporter_select.index then 
+        new_index = new_index - 1
+    end
+    self:action_open(rTeleporter, new_index)
+    ----
     log('> '..self.object_name..':action_up('.. self.player.name ..')')
     return self
 end
 
 
 function RitnGuiTeleporter:action_down()
-    
+    local info = self:getElement("label", "info")
+    local list = self:getElement("list")
+    ----
+    local id = tonumber(info.caption[1])
+    local surface_name = info.caption[2]
+    local selected_index = list.selected_index
+    ----
+    if selected_index == 0 then return self end
+    ----
+    local surfaces = remote.call("RitnCoreGame", "get_surfaces")
+    local teleporters = surfaces[surface_name].teleporters
+    local teleporter = teleporters[id]
+    local nbTeleporter = table.length(teleporters)
+    ----
+    local item_select = list.get_item(selected_index)
+    local id_select = table.index(teleporters, 'name', item_select)
+    local teleporter_select = teleporters[id_select]
+    ----
+    local tabTemp = {}
+    for i,value in pairs(teleporters) do 
+        tabTemp[teleporters[i].index] = value
+    end
+    ----
+    local pass = false
+    local new_index = teleporter_select.index
+    if teleporter_select.index + 1 == teleporter.index then 
+        pass = true
+        new_index = new_index + 2
+    else 
+        new_index = new_index + 1
+    end
+    -- check si pas déjà en haut de la liste
+    if new_index == nbTeleporter + 1 then return self end
+    ----
+    table.remove(tabTemp, teleporter_select.index)
+    teleporter_select.index = new_index
+    if pass then 
+        tabTemp[new_index] = teleporter_select
+        tabTemp[new_index-1].index = new_index-1
+        tabTemp[new_index-2].index = new_index-2
+    else 
+        tabTemp[new_index] = teleporter_select
+        tabTemp[new_index-1].index = new_index-1
+    end
+    ----
+    local tmp_teleporters = teleporters
+    teleporters = {}
+    for id,value in pairs(tmp_teleporters) do 
+        teleporters[id] = value
+        for y,_ in pairs(tabTemp) do 
+            if tabTemp[y].id == id then 
+                teleporters[id].index = tabTemp[y].index
+            end
+        end
+    end
+    ----
+    surfaces[surface_name].teleporters = teleporters
+    remote.call("RitnCoreGame", "set_surfaces" , surfaces)
+    local rTeleporter = RitnTeleporter(self.vehicle)
+    if rTeleporter.data.index < teleporter_select.index then 
+        new_index = new_index - 1
+    end
+    self:action_open(rTeleporter, new_index)
+    ----
     log('> '..self.object_name..':action_down('.. self.player.name ..')')
     return self
 end

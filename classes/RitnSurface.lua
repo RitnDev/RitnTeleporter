@@ -3,11 +3,7 @@
 local class = require(ritnlib.defines.class.core)
 local RitnCoreSurface = require(ritnlib.defines.core.class.surface)
 ----------------------------------------------------------------
-local table = require(ritnlib.defines.other).table
-----------------------------------------------------------------
-
-
-
+local table = require(ritnlib.defines.table)
 ----------------------------------------------------------------
 --- CLASSE DEFINES
 ----------------------------------------------------------------
@@ -36,7 +32,7 @@ function RitnSurface:createTeleporter(rEvent)
         
     -- check tile
     local LuaTile = self.surface.get_tile(position.x, position.y)
-    global.teleporter.tileNoTeleporter["water"](LuaTile)
+    if string.sub(LuaTile.name,1,string.len("water")) == "water" then return end 
     if global.teleporter.tileNoTeleporter[LuaTile.name] then return end 
     log("> "..self.object_name..":createTeleporter()")
 
@@ -80,6 +76,8 @@ function RitnSurface:createTeleporter(rEvent)
         last_user = rPlayer.player
     })
 
+    local nbTeleporter = table.length(self.data[self.name].teleporters)
+
     -- init data teleporter
     local data_teleporter = self.data_teleporter
     self.data[self.name].teleporters[id_teleporter] = data_teleporter
@@ -90,6 +88,7 @@ function RitnSurface:createTeleporter(rEvent)
     self.data[self.name].teleporters[id_teleporter].tag_number = tag.tag_number
     self.data[self.name].teleporters[id_teleporter].surface_name = self.surface.name
     self.data[self.name].teleporters[id_teleporter].force_name = rPlayer.force.name
+    self.data[self.name].teleporters[id_teleporter].index = nbTeleporter + 1
 
     self:update()
 

@@ -19,7 +19,7 @@ local function getElement(gui_name)
         label = {
             info = libGuiElement(gui_name,"label","info"):visible(false):get(),
             namer = libGuiElement(gui_name,"label","namer"):get(),
-            enter = libGuiElement(gui_name,"label","enter"):caption(captions.label_enter):get(),
+            enter = libGuiElement(gui_name,"label","enter"):caption(captions.label_passenger):get(),
         },
         button = {
             edit = libGuiElement(gui_name,"sprite-button","edit"):spritePath(defines.sprite.button_edit):style("frame_button"):get(),
