@@ -22,7 +22,7 @@ local function on_player_driving_changed_state(e)
             if rPlayer.driving and rTeleporter.drive ~= nil then
                 if rTeleporter.drive.name == rPlayer.name then 
                     driving = true
-                elseif rTeleporter.drive.name == "character" then 
+                elseif rTeleporter.drive.type == "character" then 
                     if rTeleporter.drive.player.name == rPlayer.name then 
                         driving = true
                     end

@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.2
+Date: 10.03.2023
+  Fixes:
+    - fix | modules : teleporter | on_player_driving_changed_state => change : drive.name == "character" -> drive.type == "character"
+    - fix | classes : RitnGuiTeleporter:create() => change : drive.name == "character" -> drive.type == "character"
+---------------------------------------------------------------------------------------------------
 Version: 1.0.1
 Date: 06.03.2023
   Add:

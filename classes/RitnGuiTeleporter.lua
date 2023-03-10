@@ -104,7 +104,7 @@ function RitnGuiTeleporter:create(...)
         if rTeleporter.drive.name == self.name then 
             content.label.enter.visible = false
             driving = true
-        elseif rTeleporter.drive.name == "character" then 
+        elseif rTeleporter.drive.type == "character" then 
             if rTeleporter.drive.player.name == self.name then 
                 content.label.enter.visible = false
                 driving = true
