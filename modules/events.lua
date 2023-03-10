@@ -30,7 +30,7 @@ end)
 -------------------------------------------
 -- INIT GLOBAL MOD
 -------------------------------------------
-if not global.teleporter then 
+if not global.teleporter.initialize then 
     global.teleporter = { 
         modules = {
             player = true,
@@ -40,7 +40,8 @@ if not global.teleporter then
             ["out-of-map"] = true,
             ["deepwater"] = true,
             ["deepwater-green"] = true,
-        }
+        },
+        initialize = true
     }
 end
 -------------------------------------------
