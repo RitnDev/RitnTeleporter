@@ -27,7 +27,6 @@ defines.class = {
 defines.modules = {
     core = dir .. ".core.modules",
     events = dir .. ".modules.events",
-    interfaces = dir .. ".modules.interfaces",
     ----
     player = dir .. ".modules.player",
     teleporter = dir .. ".modules.teleporter",

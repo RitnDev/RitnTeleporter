@@ -7,6 +7,7 @@ local RitnTeleporter = require(ritnlib.defines.teleporter.class.teleporter)
 
 
 local function on_player_used_capsule(e)
+    if global.teleporter.modules.player == false then return end
     local rEvent = RitnEvent(e)
     local rPlayer = rEvent:getPlayer()
     RitnSurface(rPlayer.surface):createTeleporter(rEvent)
@@ -15,6 +16,7 @@ end
 
 
 local function on_player_cursor_stack_changed(e) 
+    if global.teleporter.modules.player == false then return end
     local rEvent = RitnEvent(e)
     local rPlayer = rEvent:getPlayer()
 
@@ -38,6 +40,7 @@ end
 
 
 local function on_player_mined_entity(e)
+    if global.teleporter.modules.player == false then return end
     local rEvent = RitnEvent(e)
     local LuaEntity = rEvent.entity 
     RitnSurface(LuaEntity.surface):removeTeleporter(rEvent)
