@@ -30,16 +30,18 @@ end)
 -------------------------------------------
 -- INIT GLOBAL MOD
 -------------------------------------------
-global.teleporter = { 
-    modules = {
-        player = true,
-        teleporter = true,
-    },
-    tileNoTeleporter = {
-        ["out-of-map"] = true,
-        ["deepwater"] = true,
-        ["deepwater-green"] = true,
+if not global.teleporter then 
+    global.teleporter = { 
+        modules = {
+            player = true,
+            teleporter = true,
+        },
+        tileNoTeleporter = {
+            ["out-of-map"] = true,
+            ["deepwater"] = true,
+            ["deepwater-green"] = true,
+        }
     }
-}
+end
 -------------------------------------------
 return events
