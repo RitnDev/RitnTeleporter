@@ -70,7 +70,7 @@ function RitnSurface:createTeleporter(rEvent)
 
     local tag = rPlayer.force.add_chart_tag(self.surface, {
         position=position,
-        icon= {type = "item", name = ritnlib.defines.teleporter.names.entity.teleporter},	
+        icon= {type = "virtual", name = ritnlib.defines.teleporter.names.entity.teleporter},	
         text= "tp: " .. id_teleporter .. " ~ " .. self.name,
         last_user = rPlayer.player
     })

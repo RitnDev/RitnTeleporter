@@ -58,17 +58,6 @@
                 },
             }
         },
-    },
-
-    {
-        --item
-        type = "item",
-        name = ritnlib.defines.teleporter.names.entity.teleporter,
-        icon = ritnlib.defines.teleporter.graphics.icon.teleporter,
-        icon_size = 64,
-        stack_size = 1,
-        subgroup = ritnlib.defines.teleporter.names.item_subgroups.teleport,
-        order = "aaa[items]-ab[".. ritnlib.defines.teleporter.names.entity.teleporter .."]",
-        enabled = false,
-    },
+    }
+    
 })
