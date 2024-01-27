@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.2
+Date: 27.01.2024
+  Fixes:
+    - Migration de la nouvelle configuration dans on_configuration_changed.
+    - Actualisation du GUI RitnGuiTeleporter si elle est ouverte au moment de l'event 'on_player_mined_entity'.
+    - Mise à jour des index (RitnTeleporter.index) dans RitnSurface:removeTeleporter().
+    - 'button-empty' lorsqu'une liste de teleporter est vide, le libelé est ajouté dans les fichiers local.cfg.
+---------------------------------------------------------------------------------------------------
 Version: 1.1.1
 Date: 12.03.2023
   Changes:

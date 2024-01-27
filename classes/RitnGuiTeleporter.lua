@@ -323,10 +323,10 @@ function RitnGuiTeleporter:action_up()
     table.insert(tabTemp, new_index, teleporter_select)
     tabTemp[new_index].index = new_index
     if pass then 
-        tabTemp[new_index+1].index = new_index+1
-        tabTemp[new_index+2].index = new_index+2
+        tabTemp[new_index + 1].index = new_index + 1
+        tabTemp[new_index + 2].index = new_index + 2
     else 
-        tabTemp[new_index+1].index = new_index+1
+        tabTemp[new_index + 1].index = new_index+1
     end
     ----
     local tmp_teleporters = teleporters
@@ -352,17 +352,18 @@ function RitnGuiTeleporter:action_up()
     return self
 end
 
-
+-- permet de descendre un element de la liste des teleporters
 function RitnGuiTeleporter:action_down()
+    -- recupere le label "info" (il est invisible sur l'interface et permet d'avoir des info sur le teleporter id + surface)
     local info = self:getElement("label", "info")
     local list = self:getElement("list")
     ----
-    local id = tonumber(info.caption[1])
-    local surface_name = info.caption[2]
-    local selected_index = list.selected_index
+    local id = tonumber(info.caption[1]) -- recuperation de l'id : unit_number de l'entité Teleporter
+    local surface_name = info.caption[2] -- surface où se trouve l'entité Teleporter
+    local selected_index = list.selected_index -- index selectionné dans la liste actuellement
     ----
     if selected_index == 0 then return self end
-    ----
+    ---- 
     local surfaces = remote.call("RitnCoreGame", "get_surfaces")
     local teleporters = surfaces[surface_name].teleporters
     local teleporter = teleporters[id]
@@ -385,7 +386,7 @@ function RitnGuiTeleporter:action_down()
     else 
         new_index = new_index + 1
     end
-    -- check si pas déjà en haut de la liste
+    -- check si pas déjà en bas de la liste
     if new_index == nbTeleporter + 1 then return self end
     ----
     table.remove(tabTemp, teleporter_select.index)

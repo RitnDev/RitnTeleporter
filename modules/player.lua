@@ -3,6 +3,7 @@
 local RitnEvent = require(ritnlib.defines.core.class.event)
 local RitnSurface = require(ritnlib.defines.teleporter.class.surface)
 local RitnTeleporter = require(ritnlib.defines.teleporter.class.teleporter)
+local RitnGuiTeleporter = require(ritnlib.defines.teleporter.class.guiTeleporter)
 ---------------------------------------------------------------------------------------------
 
 
@@ -44,6 +45,34 @@ local function on_player_mined_entity(e)
     local rEvent = RitnEvent(e)
     local LuaEntity = rEvent.entity 
     RitnSurface(LuaEntity.surface):removeTeleporter(rEvent)
+
+    -- On actualise le RitnGuiTeleporter s'il y en a un d'ouvert
+    local rPlayer = rEvent:getPlayer()
+    local LuaEntity = rPlayer.vehicle 
+
+    if LuaEntity then 
+        local rTeleporter = RitnTeleporter(LuaEntity)
+        if rTeleporter then 
+            
+            local driving = false
+            if rPlayer.driving and rTeleporter.drive ~= nil then
+                if rTeleporter.drive.name == rPlayer.name then 
+                    driving = true
+                elseif rTeleporter.drive.type == "character" then 
+                    if rTeleporter.drive.player.name == rPlayer.name then 
+                        driving = true
+                    end
+                end
+            end
+
+            if driving then 
+                if rTeleporter:exist() then 
+                    RitnGuiTeleporter(e):action_open(rTeleporter)
+                end
+            end
+        end
+    end
+
 end
 
 

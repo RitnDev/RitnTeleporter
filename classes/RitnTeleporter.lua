@@ -30,23 +30,13 @@ end)
 ----------------------------------------------------------------
 
 
-function RitnTeleporter:open()
+function RitnTeleporter:exist()
     if self.entity == nil then return false end 
     if self.name ~= ritnlib.defines.teleporter.names.entity.teleporter then return false end
     if self.data == nil then return false end
 
     return true
 end
-
-
-function RitnTeleporter:close()
-    if self.entity == nil then return false end 
-    if self.name ~= ritnlib.defines.teleporter.names.entity.teleporter then return false end
-    if self.data == nil then return false end
-
-    return true
-end
-
 
 ----------------------------------------------------------------
 return RitnTeleporter

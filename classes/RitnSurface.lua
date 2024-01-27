@@ -106,9 +106,10 @@ function RitnSurface:removeTeleporter(rEvent)
 
     local id_teleporter = LuaEntity.unit_number
     local tag_number = self.data[self.name].teleporters[id_teleporter].tag_number
+    local index = self.data[self.name].teleporters[id_teleporter].index
 
     self.data[self.name].teleporters[id_teleporter] = nil
-
+    
     local area = {
         {position.x - 0.5, position.y - 0.5},
         {position.x + 0.5, position.y + 0.5},
@@ -118,6 +119,15 @@ function RitnSurface:removeTeleporter(rEvent)
     if table.length(tabTag) > 0 then 
         tabTag[1].destroy()
     end
+
+    -- mise à jour des index des teleporters
+    local teleporters = self.data[self.name].teleporters
+    for _,teleporter in pairs(teleporters) do 
+        if (teleporter.index > index) then 
+            teleporter.index = teleporter.index - 1
+        end
+    end
+    self.data[self.name].teleporters = teleporters
 
     self:update()
 end

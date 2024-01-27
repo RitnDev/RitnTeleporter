@@ -177,7 +177,7 @@ defines.names.caption = {
         label_enter = {"frame-teleporter.label-enter"},
         label_passenger = {"frame-teleporter.label-passenger"},
         button_teleport = {"frame-teleporter.teleport-button"},
-        button_empty = "Aucun autre téléporteur n'est posé sur la carte."
+        button_empty = {"frrame-teleporter.button-empty"},
     }
 
 }
