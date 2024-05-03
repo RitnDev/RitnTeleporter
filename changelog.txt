@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.5
+Date: 03.05.2024
+  Fixes:
+    - Corrections de la fermeture du GUI du Téléporteur s'il y en a un d'ouvert pendant qu'on le retire de la surface.
+---------------------------------------------------------------------------------------------------
 Version: 1.1.4
 Date: 04.02.2024
   Changes:

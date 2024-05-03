@@ -71,6 +71,9 @@ local function on_player_mined_entity(e)
                 end
             end
         end
+    else
+        -- Si on vient de retirer un téléporteur et pas dans un autre téléporteur en même temps on ferme tous les GUI RitnGuiTeleporter
+        RitnGuiTeleporter(e):action_close()  
     end
 
 end
