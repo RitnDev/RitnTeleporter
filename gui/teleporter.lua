@@ -47,6 +47,11 @@ end
 local function getContent()
     return {
         flow = {
+            header = {
+                "frame-main",
+                "frame-top",
+                "flow-header",
+            },
             namer = {
                 "frame-main",
                 "frame-submain",
@@ -76,12 +81,22 @@ local function getContent()
         },
         frame = {
             main = {"frame-main"},
+            top = {
+                "frame-main",
+                "frame-top",
+            },
             submain = {
                 "frame-main",
                 "frame-submain",
             },
         },
         label = {
+            title = {
+                "frame-main",
+                "frame-top",
+                "flow-header",
+                "label-title",
+            },
             info = {
                 "frame-main",
                 "frame-submain",
@@ -100,6 +115,12 @@ local function getContent()
             },
         },
         button = {
+            close = {
+                "frame-main",
+                "frame-top",
+                "flow-header",
+                "button-close",
+            },
             namer = {
                 "frame-main",
                 "frame-submain",
@@ -158,6 +179,14 @@ local function getContent()
             "flow-teleport",
             "listbox-teleporters",
         },
+        empty = {
+            dragspace = {
+                "frame-main",
+                "frame-top",
+                "flow-header",
+                "empty-dragspace",
+            },
+        }
     }
 end
 
