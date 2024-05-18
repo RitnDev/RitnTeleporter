@@ -25,6 +25,8 @@ local teleporter_interface = {
             RitnGuiTeleporter(event):action_open()
         elseif action == ritnlib.defines.teleporter.gui_actions.teleporter.close then 
             RitnGuiTeleporter(event):action_close()
+        elseif action == ritnlib.defines.teleporter.gui_actions.teleporter.button_close then 
+            RitnGuiTeleporter(event):action_close()
         elseif action == ritnlib.defines.teleporter.gui_actions.teleporter.teleport then 
             RitnGuiTeleporter(event):action_teleport()
         elseif action == ritnlib.defines.teleporter.gui_actions.teleporter.valid then 

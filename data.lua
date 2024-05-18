@@ -9,7 +9,8 @@ require(ritnlib.defines.teleporter.prototypes.item)
 require(ritnlib.defines.teleporter.prototypes.technology)
 require(ritnlib.defines.teleporter.prototypes.styles)
 require(ritnlib.defines.teleporter.prototypes.inputs)
-require(ritnlib.defines.fonts) -- FONTS
+require(ritnlib.defines.gui_styles)             -- gui_styles (RitnLib)
+require(ritnlib.defines.fonts)                  -- FONTS (RitnLib)
 
 -- get settings
 local setting_value = settings.startup[ritnlib.defines.teleporter.settings.teleporter_enable.name].value

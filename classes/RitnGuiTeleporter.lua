@@ -22,6 +22,7 @@ local RitnGuiTeleporter = class.newclass(libGui, function(base, event)
         [base.gui_name] = {
             [ritnlib.defines.teleporter.gui_actions.teleporter.open] = true,
             [ritnlib.defines.teleporter.gui_actions.teleporter.close] = true,
+            [ritnlib.defines.teleporter.gui_actions.teleporter.button_close] = true,
             [ritnlib.defines.teleporter.gui_actions.teleporter.teleport] = true,
             [ritnlib.defines.teleporter.gui_actions.teleporter.edit] = true,
             [ritnlib.defines.teleporter.gui_actions.teleporter.valid] = true,
@@ -52,11 +53,23 @@ function RitnGuiTeleporter:create(...)
         frame = {},
         label = {},
         button = {},
+        empty = {},
     }
 
 
     -- frame Teleporter
     content.frame.main =            self.gui[1].add(element.frame.main)
+    -- frame top
+    content.frame.top =             content.frame.main.add(element.frame.top)
+    -- button close
+    content.flow.header =           content.frame.top.add(element.flow.header)
+    -- label title
+    content.label.title =           content.flow.header.add(element.label.title)
+    -- empty dragspace
+    content.empty.dragspace =       content.flow.header.add(element.empty.dragspace)
+    -- button close
+    content.button.close =          content.flow.header.add(element.button.close)
+    
     content.frame.submain =         content.frame.main.add(element.frame.submain)
     -- label info
     content.label.info =            content.frame.submain.add(element.label.info)
@@ -93,7 +106,7 @@ function RitnGuiTeleporter:create(...)
     -- button edit
     content.button.up =             content.flow.dialog.add(element.button.up)
     -- empty
-    content.empty =                 content.flow.dialog.add(element.empty)
+    content.empty.empty =                 content.flow.dialog.add(element.empty.empty)
     -- button request
     content.button.teleport =       content.flow.dialog.add(element.button.teleport)
     
@@ -119,9 +132,14 @@ function RitnGuiTeleporter:create(...)
     content.label.namer.caption = rTeleporter.data.name
     content.text.text = rTeleporter.data.name
     content.frame.main.auto_center = true
+    content.flow.header.drag_target = content.frame.main
+    content.label.title.drag_target = content.frame.main
+    content.empty.dragspace.drag_target = content.frame.main
     ----
-    libStyle(content.frame.main):padding(4)
-    libStyle(content.frame.submain):padding(4):stretchable()
+    libStyle(content.frame.top):topPadding(4):rightPadding(8):leftPadding(8)
+    libStyle(content.flow.header):verticalStretch(false)
+    libStyle(content.empty.dragspace):stretchable():height(24):rightMargin(8)
+    libStyle(content.frame.submain):padding(4):margin(4):stretchable()
     libStyle(content.flow.namer):padding(4)
     libStyle(content.label.namer):font(font.bold18):width(275)
     libStyle(content.button.edit):spriteButton(28)
@@ -134,7 +152,7 @@ function RitnGuiTeleporter:create(...)
     libStyle(content.flow.dialog):horizontalStretch():topPadding(4)
     libStyle(content.button.down):spriteButton(28)
     libStyle(content.button.up):spriteButton(28)
-    libStyle(content.empty):stretchable()
+    libStyle(content.empty.empty):stretchable()
     libStyle(content.button.teleport):height(30)
     libStyle(content.flow.empty):padding(4):height(80)
     libStyle(content.button.empty):stretchable():fontColor("white", true, true)

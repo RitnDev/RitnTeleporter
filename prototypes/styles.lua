@@ -42,3 +42,7 @@ RitnSprite:extend(
 	ritnlib.defines.teleporter.names.sprite.button_valid,
 	ritnlib.defines.teleporter.graphics.gui.button_valid
 )
+RitnSprite:extend(
+	ritnlib.defines.teleporter.names.sprite.button_close,
+	ritnlib.defines.teleporter.graphics.gui.button_close
+)
