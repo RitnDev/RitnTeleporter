@@ -1,16 +1,10 @@
 -- MODULE : TELEPORTER
 ---------------------------------------------------------------------------------------------
-local RitnEvent = require(ritnlib.defines.core.class.event)
-local RitnSurface = require(ritnlib.defines.teleporter.class.surface)
-local RitnTeleporter = require(ritnlib.defines.teleporter.class.teleporter)
-local RitnGuiTeleporter = require(ritnlib.defines.teleporter.class.guiTeleporter)
----------------------------------------------------------------------------------------------
-
 
 
 local function on_player_driving_changed_state(e)
     if global.teleporter.modules.teleporter == false then return end
-    local rEvent = RitnEvent(e)
+    local rEvent = RitnCoreEvent(e)
     local rPlayer = rEvent:getPlayer()
 
     local LuaEntity = rEvent.entity 
@@ -44,7 +38,7 @@ end
 
 local function on_gui_opened(e)
     if global.teleporter.modules.teleporter == false then return end
-    local rTeleporter = RitnTeleporter(RitnEvent(e).entity)
+    local rTeleporter = RitnTeleporter(RitnCoreEvent(e).entity)
     if rTeleporter:exist() then 
         RitnGuiTeleporter(e):action_open(rTeleporter)
     end

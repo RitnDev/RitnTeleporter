@@ -1,27 +1,21 @@
--- RitnSurface
-----------------------------------------------------------------
-local class = require(ritnlib.defines.class.core)
-local RitnCoreSurface = require(ritnlib.defines.core.class.surface)
+-- RitnTeleporterSurface
 ----------------------------------------------------------------
 local table = require(ritnlib.defines.table)
 ----------------------------------------------------------------
 --- CLASSE DEFINES
 ----------------------------------------------------------------
-local RitnSurface = class.newclass(RitnCoreSurface, function(base, LuaSurface)
-    if LuaSurface == nil then return end
-    if LuaSurface.valid == false then return end
-    if LuaSurface.object_name ~= "LuaSurface" then return end
-    RitnCoreSurface.init(base, LuaSurface)
+RitnTeleporterSurface = ritnlib.classFactory.newclass(RitnCoreSurface, function(self, LuaSurface)
+    RitnCoreSurface.init(self, LuaSurface)
     --------------------------------------------------
-    base.data_teleporter = remote.call("RitnCoreGame", "get_data", "teleporter")
+    self.data_teleporter = remote.call("RitnCoreGame", "get_data", "teleporter")
     --------------------------------------------------
-    log('> [RitnTeleporter] > RitnSurface')
+    log('> [RitnTeleporter] > RitnTeleporterSurface')
 end)
 
 ----------------------------------------------------------------
 
 
-function RitnSurface:createTeleporter(rEvent)
+function RitnTeleporterSurface:createTeleporter(rEvent)
     -- check capsule
     local LuaItem = rEvent.event.item
     local rPlayer = rEvent:getPlayer()
@@ -95,7 +89,7 @@ end
 
 
 
-function RitnSurface:removeTeleporter(rEvent)
+function RitnTeleporterSurface:removeTeleporter(rEvent)
     local LuaEntity = rEvent.entity 
     local position = LuaEntity.position
 
@@ -135,6 +129,3 @@ end
 
 
 
-
-
-return RitnSurface

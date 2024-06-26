@@ -1,30 +1,26 @@
 -- RitnTeleporter
 ----------------------------------------------------------------
-local class = require(ritnlib.defines.class.core)
-----------------------------------------------------------------
-local pattern = "([^-]*)~?([^-]*)~?([^-]*)"
-----------------------------------------------------------------
 --- CLASSE DEFINES
 ----------------------------------------------------------------
-local RitnTeleporter = class.newclass(function(base, LuaEntity)
+RitnTeleporter = ritnlib.classFactory.newclass(function(self, LuaEntity)
     if LuaEntity == nil then return end
     if LuaEntity.valid == false then return end
     if LuaEntity.object_name ~= "LuaEntity" then return end
     if LuaEntity.name ~= ritnlib.defines.teleporter.names.entity.teleporter then return end
-    base.object_name = "RitnTeleporter"
+    self.object_name = "RitnTeleporter"
     --------------------------------------------------
-    log('> '..base.object_name..'() -> init ok !')
-    base.entity = LuaEntity
-    base.surface = LuaEntity.surface
-    base.force = LuaEntity.force
-    base.position = LuaEntity.position
-    base.drive = LuaEntity.get_driver()
+    log('> '..self.object_name..'() -> init ok !')
+    self.entity = LuaEntity
+    self.surface = LuaEntity.surface
+    self.force = LuaEntity.force
+    self.position = LuaEntity.position
+    self.drive = LuaEntity.get_driver()
     ----
-    base.name = LuaEntity.name
-    base.id = LuaEntity.unit_number
+    self.name = LuaEntity.name
+    self.id = LuaEntity.unit_number
     ----
     local surfaces = remote.call("RitnCoreGame", "get_surfaces")
-    base.data = surfaces[base.surface.name].teleporters[base.id]
+    self.data = surfaces[self.surface.name].teleporters[self.id]
     --------------------------------------------------
 end)
 ----------------------------------------------------------------
@@ -37,6 +33,3 @@ function RitnTeleporter:exist()
 
     return true
 end
-
-----------------------------------------------------------------
-return RitnTeleporter

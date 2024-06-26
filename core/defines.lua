@@ -22,6 +22,8 @@ defines.class = {
     guiTeleporter = dir .. ".classes.RitnGuiTeleporter",
 }
 
+-- setup classes
+defines.setup = dir .. ".core.setup-classes"
 
 -- Modules
 defines.modules = {

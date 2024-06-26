@@ -1,25 +1,18 @@
 -- RitnGuiTeleporter
 ----------------------------------------------------------------
-local class = require(ritnlib.defines.class.core)
-local libStyle = require(ritnlib.defines.class.gui.style)
-local libGui = require(ritnlib.defines.class.luaClass.gui)
-----------------------------------------------------------------
-local RitnPlayer = require(ritnlib.defines.core.class.player)
-local RitnTeleporter = require(ritnlib.defines.teleporter.class.teleporter)
-----------------------------------------------------------------
 local font = ritnlib.defines.names.font
 local fGui = require(ritnlib.defines.teleporter.gui.teleporter)
 local table = require(ritnlib.defines.table)
 ----------------------------------------------------------------
 --- CLASSE DEFINES
 ----------------------------------------------------------------
-local RitnGuiTeleporter = class.newclass(libGui, function(base, event)
-    libGui.init(base, event, ritnlib.defines.teleporter.name, "frame-main")
-    base.object_name = "RitnGuiTeleporter"
+RitnGuiTeleporter = ritnlib.classFactory.newclass(RitnLibGui, function(self, event)
+    RitnLibGui.init(self, event, ritnlib.defines.teleporter.name, "frame-main")
+    self.object_name = "RitnGuiTeleporter"
     --------------------------------------------------
-    base.gui_name = "teleporter"
-    base.gui_action = {
-        [base.gui_name] = {
+    self.gui_name = "teleporter"
+    self.gui_action = {
+        [self.gui_name] = {
             [ritnlib.defines.teleporter.gui_actions.teleporter.open] = true,
             [ritnlib.defines.teleporter.gui_actions.teleporter.close] = true,
             [ritnlib.defines.teleporter.gui_actions.teleporter.button_close] = true,
@@ -31,9 +24,9 @@ local RitnGuiTeleporter = class.newclass(libGui, function(base, event)
         }
     }    
     --------------------------------------------------
-    base.gui = { base.player.gui.screen }
+    self.gui = { self.player.gui.screen }
     --------------------------------------------------
-    base.content = fGui.getContent()
+    self.content = fGui.getContent()
     --------------------------------------------------
 end)
 
@@ -136,26 +129,26 @@ function RitnGuiTeleporter:create(...)
     content.label.title.drag_target = content.frame.main
     content.empty.dragspace.drag_target = content.frame.main
     ----
-    libStyle(content.frame.top):topPadding(4):rightPadding(8):leftPadding(8)
-    libStyle(content.flow.header):verticalStretch(false)
-    libStyle(content.empty.dragspace):stretchable():height(24):rightMargin(8)
-    libStyle(content.frame.submain):padding(4):margin(4):stretchable()
-    libStyle(content.flow.namer):padding(4)
-    libStyle(content.label.namer):font(font.bold18):width(275)
-    libStyle(content.button.edit):spriteButton(28)
-    libStyle(content.flow.edit):padding(8)
-    libStyle(content.text):font(font.default18):width(275)
-    libStyle(content.button.valid):spriteButton(28)
-    libStyle(content.label.enter):padding(4)
-    libStyle(content.flow.teleport):padding(4):stretchable()
-    libStyle(content.list):horizontalStretch():maxHeight(500)
-    libStyle(content.flow.dialog):horizontalStretch():topPadding(4)
-    libStyle(content.button.down):spriteButton(28)
-    libStyle(content.button.up):spriteButton(28)
-    libStyle(content.empty.empty):stretchable()
-    libStyle(content.button.teleport):height(30)
-    libStyle(content.flow.empty):padding(4):height(80)
-    libStyle(content.button.empty):stretchable():fontColor("white", true, true)
+    RitnLibStyle(content.frame.top):topPadding(4):rightPadding(8):leftPadding(8)
+    RitnLibStyle(content.flow.header):verticalStretch(false)
+    RitnLibStyle(content.empty.dragspace):stretchable():height(24):rightMargin(8)
+    RitnLibStyle(content.frame.submain):padding(4):margin(4):stretchable()
+    RitnLibStyle(content.flow.namer):padding(4)
+    RitnLibStyle(content.label.namer):font(font.bold18):width(275)
+    RitnLibStyle(content.button.edit):spriteButton(28)
+    RitnLibStyle(content.flow.edit):padding(8)
+    RitnLibStyle(content.text):font(font.default18):width(275)
+    RitnLibStyle(content.button.valid):spriteButton(28)
+    RitnLibStyle(content.label.enter):padding(4)
+    RitnLibStyle(content.flow.teleport):padding(4):stretchable()
+    RitnLibStyle(content.list):horizontalStretch():maxHeight(500)
+    RitnLibStyle(content.flow.dialog):horizontalStretch():topPadding(4)
+    RitnLibStyle(content.button.down):spriteButton(28)
+    RitnLibStyle(content.button.up):spriteButton(28)
+    RitnLibStyle(content.empty.empty):stretchable()
+    RitnLibStyle(content.button.teleport):height(30)
+    RitnLibStyle(content.flow.empty):padding(4):height(80)
+    RitnLibStyle(content.button.empty):stretchable():fontColor("white", true, true)
 
     
     if driving then
@@ -441,6 +434,3 @@ function RitnGuiTeleporter:action_down()
     return self
 end
 
-
-----------------------------------------------------------------
-return RitnGuiTeleporter

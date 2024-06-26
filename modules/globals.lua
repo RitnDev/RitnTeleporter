@@ -17,8 +17,6 @@ end
 ---------------------------------------------------------------------------------------------
 -- REMOTE FUNCTIONS INTERFACE
 ---------------------------------------------------------------------------------------------
-local RitnGuiTeleporter = require(ritnlib.defines.teleporter.class.guiTeleporter)
----------------------------------------------------------------------------------------------
 local teleporter_interface = {
     ["gui_action_teleporter"] = function(action, event)
         if action == ritnlib.defines.teleporter.gui_actions.teleporter.open then 

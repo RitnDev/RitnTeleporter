@@ -1,24 +1,20 @@
 -- MODULE : PLAYER
 ---------------------------------------------------------------------------------------------
-local RitnEvent = require(ritnlib.defines.core.class.event)
-local RitnSurface = require(ritnlib.defines.teleporter.class.surface)
-local RitnTeleporter = require(ritnlib.defines.teleporter.class.teleporter)
-local RitnGuiTeleporter = require(ritnlib.defines.teleporter.class.guiTeleporter)
----------------------------------------------------------------------------------------------
+
 
 
 local function on_player_used_capsule(e)
     if global.teleporter.modules.player == false then return end
-    local rEvent = RitnEvent(e)
+    local rEvent = RitnCoreEvent(e)
     local rPlayer = rEvent:getPlayer()
-    RitnSurface(rPlayer.surface):createTeleporter(rEvent)
+    RitnTeleporterSurface(rPlayer.surface):createTeleporter(rEvent)
 end
 
 
 
 local function on_player_cursor_stack_changed(e) 
     if global.teleporter.modules.player == false then return end
-    local rEvent = RitnEvent(e)
+    local rEvent = RitnCoreEvent(e)
     local rPlayer = rEvent:getPlayer()
 
     if rPlayer == nil then return end
@@ -42,9 +38,9 @@ end
 
 local function on_player_mined_entity(e)
     if global.teleporter.modules.player == false then return end
-    local rEvent = RitnEvent(e)
+    local rEvent = RitnCoreEvent(e)
     local LuaEntity = rEvent.entity 
-    RitnSurface(LuaEntity.surface):removeTeleporter(rEvent)
+    RitnTeleporterSurface(LuaEntity.surface):removeTeleporter(rEvent)
 
     -- On actualise le RitnGuiTeleporter s'il y en a un d'ouvert
     local rPlayer = rEvent:getPlayer()

@@ -1,4 +1,3 @@
-local libGuiElement = require(ritnlib.defines.class.gui.element)
 local captions = ritnlib.defines.teleporter.names.caption.frame_teleporter
 local defines = ritnlib.defines.teleporter.names
 
@@ -6,39 +5,39 @@ local defines = ritnlib.defines.teleporter.names
 local function getElement(gui_name)
     return {
         flow = {
-            header = libGuiElement(gui_name,"flow","header"):horizontal():get(),
-            namer = libGuiElement(gui_name,"flow","namer"):horizontal():get(),
-            edit = libGuiElement(gui_name,"flow","edit"):horizontal():visible(false):get(),
-            teleport = libGuiElement(gui_name,"flow","teleport"):vertical():visible(false):get(),
-            dialog = libGuiElement(gui_name,"flow","dialog"):horizontal():get(),
-            empty = libGuiElement(gui_name,"flow","empty"):horizontal():visible(false):get(),
+            header = RitnLibGuiElement(gui_name,"flow","header"):horizontal():get(),
+            namer = RitnLibGuiElement(gui_name,"flow","namer"):horizontal():get(),
+            edit = RitnLibGuiElement(gui_name,"flow","edit"):horizontal():visible(false):get(),
+            teleport = RitnLibGuiElement(gui_name,"flow","teleport"):vertical():visible(false):get(),
+            dialog = RitnLibGuiElement(gui_name,"flow","dialog"):horizontal():get(),
+            empty = RitnLibGuiElement(gui_name,"flow","empty"):horizontal():visible(false):get(),
         },
         frame = {
-            main = libGuiElement(gui_name,"frame","main"):vertical():style("frame-ritngui"):get(),
-            top = libGuiElement(gui_name,"frame","top"):style("frame-bg-ritngui"):get(),
-            submain = libGuiElement(gui_name,"frame","submain"):vertical():style("inside_shallow_frame"):get(),
+            main = RitnLibGuiElement(gui_name,"frame","main"):vertical():style("frame-ritngui"):get(),
+            top = RitnLibGuiElement(gui_name,"frame","top"):style("frame-bg-ritngui"):get(),
+            submain = RitnLibGuiElement(gui_name,"frame","submain"):vertical():style("inside_shallow_frame"):get(),
         },
         label = {
-            title = libGuiElement(gui_name, "label", "title"):caption(captions.titre):style("frame_title"):get(),
-            info = libGuiElement(gui_name,"label","info"):visible(false):get(),
-            namer = libGuiElement(gui_name,"label","namer"):get(),
-            enter = libGuiElement(gui_name,"label","enter"):caption(captions.label_passenger):get(),
+            title = RitnLibGuiElement(gui_name, "label", "title"):caption(captions.titre):style("frame_title"):get(),
+            info = RitnLibGuiElement(gui_name,"label","info"):visible(false):get(),
+            namer = RitnLibGuiElement(gui_name,"label","namer"):get(),
+            enter = RitnLibGuiElement(gui_name,"label","enter"):caption(captions.label_passenger):get(),
         },
         button = {
-            close = libGuiElement(gui_name,"sprite-button","close"):spritePath('utility/close_white'):style("frame_action_button"):mouseButtonFilter():get(),
-            edit = libGuiElement(gui_name,"sprite-button","edit"):spritePath(defines.sprite.button_edit):style("frame_button"):get(),
-            valid = libGuiElement(gui_name, "sprite-button", "valid"):spritePath(defines.sprite.button_valid):style("frame_button"):get(),
-            down = libGuiElement(gui_name,"sprite-button","down"):spritePath(defines.sprite.button_down):style("frame_button"):get(),
-            up = libGuiElement(gui_name,"sprite-button","up"):spritePath(defines.sprite.button_up):style("frame_button"):get(),
-            teleport = libGuiElement(gui_name,"button","teleport"):style("confirm_button"):caption(captions.button_teleport):get(),
-            empty = libGuiElement(gui_name, "button", "empty"):style(ritnlib.defines.teleporter.names.styles.ritnFrameButton):caption(captions.button_empty):enabled(false):get(),
+            close = RitnLibGuiElement(gui_name,"sprite-button","close"):spritePath('utility/close_white'):style("frame_action_button"):mouseButtonFilter():get(),
+            edit = RitnLibGuiElement(gui_name,"sprite-button","edit"):spritePath(defines.sprite.button_edit):style("frame_button"):get(),
+            valid = RitnLibGuiElement(gui_name, "sprite-button", "valid"):spritePath(defines.sprite.button_valid):style("frame_button"):get(),
+            down = RitnLibGuiElement(gui_name,"sprite-button","down"):spritePath(defines.sprite.button_down):style("frame_button"):get(),
+            up = RitnLibGuiElement(gui_name,"sprite-button","up"):spritePath(defines.sprite.button_up):style("frame_button"):get(),
+            teleport = RitnLibGuiElement(gui_name,"button","teleport"):style("confirm_button"):caption(captions.button_teleport):get(),
+            empty = RitnLibGuiElement(gui_name, "button", "empty"):style(ritnlib.defines.teleporter.names.styles.ritnFrameButton):caption(captions.button_empty):enabled(false):get(),
         },
-        line = libGuiElement(gui_name,"line","line"):horizontal():get(),
-        text = libGuiElement(gui_name, "textfield", "namer"):get(),
-        list = libGuiElement(gui_name,"list-box","teleporters"):get(),
+        line = RitnLibGuiElement(gui_name,"line","line"):horizontal():get(),
+        text = RitnLibGuiElement(gui_name, "textfield", "namer"):get(),
+        list = RitnLibGuiElement(gui_name,"list-box","teleporters"):get(),
         empty = {
-            empty = libGuiElement(gui_name,"empty-widget","empty"):get(),
-            dragspace = libGuiElement(gui_name,"empty-widget","dragspace"):style("draggable_space_header"):get(),
+            empty = RitnLibGuiElement(gui_name,"empty-widget","empty"):get(),
+            dragspace = RitnLibGuiElement(gui_name,"empty-widget","dragspace"):style("draggable_space_header"):get(),
         }
     }
 end
