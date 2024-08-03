@@ -14,24 +14,11 @@ end
 
 local function on_player_cursor_stack_changed(e) 
     if global.teleporter.modules.player == false then return end
-    local rEvent = RitnCoreEvent(e)
-    local rPlayer = rEvent:getPlayer()
-
-    if rPlayer == nil then return end
-    if rPlayer.player.cursor_stack.count == 0 then return end
-    
-    local LuaItemStack = rPlayer.player.cursor_stack
-    if LuaItemStack == nil then return end
-    if LuaItemStack.valid == false then return end
-    
-    if LuaItemStack.name == ritnlib.defines.teleporter.names.item.capsule then 
-        local players = remote.call("RitnCoreGame", "get_players")
-        if rPlayer.player.surface.name == players[rPlayer.player.index].origine or "nauvis" then return end 
-        if rPlayer.player.cursor_stack.count == 0 then return end
-
-        rPlayer.player.clear_cursor()
-        rPlayer.player.print(ritnlib.defines.teleporter.names.caption.msg.cursor)
-    end
+    local rPlayer = RitnCoreEvent(e):getPlayer()
+    rPlayer:clearCursor(
+        ritnlib.defines.teleporter.names.item.capsule, 
+        ritnlib.defines.teleporter.names.caption.msg.cursor
+    )
 end
 
 
