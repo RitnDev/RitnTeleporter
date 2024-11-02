@@ -39,12 +39,14 @@ local function customInput_close_frame(event)
     remote.call("RitnTeleporter", "gui_action_teleporter", "close", event)
 end
 
--------------------------------------------
+---------------------------------------------------------------------------------------------
+local module = {events = {}}
+---------------------------------------------------------------------------------------------
 -- event : custom-input
-script.on_event(ritnlib.defines.teleporter.names.customInput.frame_close1, customInput_close_frame)
-script.on_event(ritnlib.defines.teleporter.names.customInput.frame_close2, customInput_close_frame)
+module.events[ritnlib.defines.teleporter.names.customInput.frame_close1] = customInput_close_frame
+module.events[ritnlib.defines.teleporter.names.customInput.frame_close2]= customInput_close_frame
 -------------------------------------------
-script.on_init(on_init_mod)
-script.on_configuration_changed(on_configuration_changed)
+module.on_init = on_init_mod
+module.on_configuration_changed = on_configuration_changed
 -------------------------------------------
-return {}
+return module

@@ -26,7 +26,7 @@ function RitnTeleporterSurface:createTeleporter(rEvent)
     -- check tile
     local LuaTile = self.surface.get_tile(position.x, position.y)
     if string.sub(LuaTile.name,1,string.len("water")) == "water" then return end 
-    if global.teleporter.tileNoTeleporter[LuaTile.name] then return end 
+    if storage.teleporter.tileNoTeleporter[LuaTile.name] then return end 
     log("> "..self.object_name..":createTeleporter()")
 
     local tabEntities = self.surface.find_entities_filtered({
@@ -51,12 +51,12 @@ function RitnTeleporterSurface:createTeleporter(rEvent)
     
 
     --create render text
-    local renderId = rendering.draw_text{
+    local LuaRender = rendering.draw_text{
         text="tp: " .. id_teleporter .. " ~ " .. self.name,
         surface=self.surface,
         target=LuaEntity,
         alignment = "center",
-        target_offset={0, -2.0},
+        target_offset={0.0, -2.0},
         color = {r = 0.115, g = 0.955, b = 0.150, a = 1},
         scale_with_zoom = true,
         scale = 1.5
@@ -77,7 +77,7 @@ function RitnTeleporterSurface:createTeleporter(rEvent)
     self.data[self.name].teleporters[id_teleporter].id = id_teleporter
     self.data[self.name].teleporters[id_teleporter].name = "tp: " .. id_teleporter .. " ~ " .. self.name
     self.data[self.name].teleporters[id_teleporter].position = position
-    self.data[self.name].teleporters[id_teleporter].render_id = renderId
+    self.data[self.name].teleporters[id_teleporter].render_id = LuaRender.id
     self.data[self.name].teleporters[id_teleporter].tag_number = tag.tag_number
     self.data[self.name].teleporters[id_teleporter].surface_name = self.surface.name
     self.data[self.name].teleporters[id_teleporter].force_name = rPlayer.force.name

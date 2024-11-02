@@ -1,8 +1,8 @@
 ---------------------------------------------------------------------------------------------
 -- GLOBALS
 ---------------------------------------------------------------------------------------------
-if global.teleporter == nil then
-    global.teleporter = { 
+if storage.teleporter == nil then
+    storage.teleporter = { 
         modules = {
             player = true,
             teleporter = true,
@@ -39,10 +39,10 @@ local teleporter_interface = {
     end,
     --disable modules
     ["disable.module.player"] = function()
-        global.teleporter.modules.player = false
+        storage.teleporter.modules.player = false
     end,
     ["disable.module.teleporter"] = function()
-        global.teleporter.modules.teleporter = false
+        storage.teleporter.modules.teleporter = false
     end,
 }
 

@@ -20,10 +20,11 @@ data:extend({
                 sound = { filename = ritnlib.defines.teleporter.directory .. "/sounds/portal_open.ogg", volume = 0.5 },
                 ammo_type =
                 {
-                    category = "capsule",
-                    type = "direct",
-                }
-
+                    action = {
+                        type = "direct"
+                    },
+                },
+                ammo_category = "capsule"
             }
         },
     },
@@ -44,8 +45,10 @@ data:extend({
             {type="item", name="arithmetic-combinator", amount=4},
             {type="item", name="power-switch", amount=2}
         },
-        result = ritnlib.defines.teleporter.names.item.capsule,
-        result_count = 1
+        results = {
+            {type = "item", name = ritnlib.defines.teleporter.names.item.capsule, amount = 1}
+        },
+        result_is_always_fresh = true
     },
 
     {

@@ -24,7 +24,7 @@ local function getElement(gui_name)
             enter = RitnLibGuiElement(gui_name,"label","enter"):caption(captions.label_passenger):get(),
         },
         button = {
-            close = RitnLibGuiElement(gui_name,"sprite-button","close"):spritePath('utility/close_white'):style("frame_action_button"):mouseButtonFilter():get(),
+            close = RitnLibGuiElement(gui_name,"sprite-button","close"):spritePath('utility/close'):style("frame_action_button"):mouseButtonFilter():get(),
             edit = RitnLibGuiElement(gui_name,"sprite-button","edit"):spritePath(defines.sprite.button_edit):style("frame_button"):get(),
             valid = RitnLibGuiElement(gui_name, "sprite-button", "valid"):spritePath(defines.sprite.button_valid):style("frame_button"):get(),
             down = RitnLibGuiElement(gui_name,"sprite-button","down"):spritePath(defines.sprite.button_down):style("frame_button"):get(),

@@ -4,7 +4,7 @@
 
 
 local function on_player_used_capsule(e)
-    if global.teleporter.modules.player == false then return end
+    if storage.teleporter.modules.player == false then return end
     local rEvent = RitnCoreEvent(e)
     local rPlayer = rEvent:getPlayer()
     RitnTeleporterSurface(rPlayer.surface):createTeleporter(rEvent)
@@ -13,7 +13,7 @@ end
 
 
 local function on_player_cursor_stack_changed(e) 
-    if global.teleporter.modules.player == false then return end
+    if storage.teleporter.modules.player == false then return end
     local rPlayer = RitnCoreEvent(e):getPlayer()
     rPlayer:clearCursor(
         ritnlib.defines.teleporter.names.item.capsule, 
@@ -24,7 +24,7 @@ end
 
 
 local function on_player_mined_entity(e)
-    if global.teleporter.modules.player == false then return end
+    if storage.teleporter.modules.player == false then return end
     local rEvent = RitnCoreEvent(e)
     local LuaEntity = rEvent.entity 
     RitnTeleporterSurface(LuaEntity.surface):removeTeleporter(rEvent)

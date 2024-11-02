@@ -3,7 +3,7 @@
 
 
 local function on_player_driving_changed_state(e)
-    if global.teleporter.modules.teleporter == false then return end
+    if storage.teleporter.modules.teleporter == false then return end
     local rEvent = RitnCoreEvent(e)
     local rPlayer = rEvent:getPlayer()
 
@@ -37,7 +37,7 @@ end
 
 
 local function on_gui_opened(e)
-    if global.teleporter.modules.teleporter == false then return end
+    if storage.teleporter.modules.teleporter == false then return end
     local rTeleporter = RitnTeleporter(RitnCoreEvent(e).entity)
     if rTeleporter:exist() then 
         RitnGuiTeleporter(e):action_open(rTeleporter)
@@ -46,7 +46,7 @@ end
 
 
 local function on_gui_click(e)
-    if global.teleporter.modules.teleporter == false then return end
+    if storage.teleporter.modules.teleporter == false then return end
     RitnGuiTeleporter(e):on_gui_click()
 end
 

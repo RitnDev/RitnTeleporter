@@ -274,7 +274,12 @@ function RitnGuiTeleporter:action_valid()
     surfaces[surface_name].teleporters[id].name = textfield.text
     
     -- set rendering
-    rendering.set_text(render_id, textfield.text)
+    local LuaRenders = rendering.get_all_objects(ritnlib.defines.teleporter.name)
+    local index = table.index(LuaRenders, "id", render_id)
+    if index > 0 then
+        local LuaRender = LuaRenders[index]
+        LuaRender.text = textfield.text
+    end
 
     -- set tag map
     local area = {

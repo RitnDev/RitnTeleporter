@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.3.0
+Date: 12.10.2024
+  Changes:
+    - Passage en 2.0.
+    - Variable "global" -> "storage".
+---------------------------------------------------------------------------------------------------
 Version: 1.2.1
 Date: 26.06.2024
   Fixes:
@@ -34,7 +40,7 @@ Date: 04.02.2024
 Version: 1.1.3
 Date: 27.01.2024
   Fixes:
-   - "frrame-....button-empty" -> "frame-....button-empty" dans le fichier defines.lua
+    - "frame-....button-empty" -> "frame-....button-empty" dans le fichier defines.lua
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.2
 Date: 27.01.2024
