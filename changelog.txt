@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.3.1
+Date: 06.11.2024
+  Changes:
+    - Remplacement des câbles verts et rouges qui ne peuvent plus être fabriqués (recipe: "ritn-teleporter-capsule").
+  Notes:
+    - C'est mon anniversaire aujourd'hui !
+---------------------------------------------------------------------------------------------------
 Version: 1.3.0
 Date: 12.10.2024
   Changes:

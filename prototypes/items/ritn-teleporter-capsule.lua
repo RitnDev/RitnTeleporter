@@ -40,8 +40,8 @@ data:extend({
         {
             {type="item", name="radar", amount=1},
             {type="item", name="steel-plate", amount=2},
-            {type="item", name="red-wire", amount=2},
-            {type="item", name="green-wire", amount=4},
+            {type="item", name="electronic-circuit", amount=2},
+            {type="item", name="copper-cable", amount=6},
             {type="item", name="arithmetic-combinator", amount=4},
             {type="item", name="power-switch", amount=2}
         },
