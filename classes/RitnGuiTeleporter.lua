@@ -230,7 +230,7 @@ function RitnGuiTeleporter:action_teleport()
     local id = table.index(teleporters, 'name', item_select)
     local teleporter = teleporters[id]
     
-    local tabEntities = game.surfaces[surface_name].find_entities_filtered({
+    local tabEntities = game.get_surface(surface_name).find_entities_filtered({
         name=ritnlib.defines.teleporter.names.entity.teleporter, 
         type='car',
         position=teleporter.position,
